@@ -1,0 +1,43 @@
+{
+  "name": "mern-boilerplate",
+  "version": "1.0.0",
+  "description": "MERN simple boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "node build/index.js",
+    "build": "yarn build:client && yarn build:server",
+    "dev": "concurrently 'yarn dev:client' 'yarn dev:server'",
+    "dev:server": "nodemon src/server/index.js --exec babel-node",
+    "dev:client": "webpack --mode development --watch --progress",
+    "build:client": "webpack --mode production",
+    "build:server": "yarn build:clean && babel -d build src/server/ --ignore src/server/public && yarn build:public:copy",
+    "build:clean": "rm -fr build",
+    "build:public:copy": "cp -fr src/server/public build/public"
+  },
+  "author": "Luis Lopez",
+  "license": "ISC",
+  "dependencies": {
+    "babel-polyfill": "^6.26.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.7.7",
+    "morgan": "^1.9.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-loader": "7",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "concurrently": "^5.0.0",
+    "css-loader": "^3.2.0",
+    "nodemon": "^1.19.4",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.41.2",
+    "webpack-cli": "^3.3.10"
+  }
+}
